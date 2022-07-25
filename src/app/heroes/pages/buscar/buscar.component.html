@@ -1,0 +1,36 @@
+<div fxLayout="column">
+    <div>
+        <h1>Buscador Heroes</h1>
+        <mat-divider></mat-divider>
+
+    </div>
+    <div fxLayout="column">
+        <h3>Buscar</h3>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Buscar Heroe...</mat-label>
+            <input type="text" placeholder="Buscar"  matInput [(ngModel)]="termino"
+                [matAutocomplete]="auto"
+                (input)="buscando()">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="opcion($event)">
+                <mat-option *ngFor="let h of heroe " [value]="h" >
+                    {{h.superhero}}
+                </mat-option>
+                <mat-option value="" *ngIf="heroe.length === 0 && termino.trim().length > 0 ">
+                    No Se Encontro Nada Con El Termino  {{termino}}
+                </mat-option>
+            </mat-autocomplete>
+
+        </mat-form-field>
+
+    </div>
+
+
+    
+<div *ngIf="heroese; else elseBlock">
+    <app-tarjetahero [Heroes]="heroese"></app-tarjetahero>
+    
+</div>
+<ng-template #elseBlock>No Hay Nada Que Mostrar</ng-template>    
+
+</div>
+
